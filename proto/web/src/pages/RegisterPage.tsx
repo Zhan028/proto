@@ -143,7 +143,7 @@ const RegisterPage = () => {
               {/* Role Selection */}
               <div className="animate-fade-in-up animation-delay-200">
                 <label className="block text-sm font-medium text-emerald-100 mb-3">I am a</label>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <label
                     className={`relative flex flex-col items-center p-4 rounded-xl cursor-pointer transition-all duration-300 ${
                       formData.role === 'student'
@@ -159,15 +159,15 @@ const RegisterPage = () => {
                       onChange={handleChange}
                       className="sr-only"
                     />
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
                       formData.role === 'student' ? 'bg-emerald-500 shadow-lg shadow-emerald-500/50' : 'bg-white/10'
                     }`}>
-                      <svg className={`w-6 h-6 transition-colors ${formData.role === 'student' ? 'text-white' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className={`w-5 h-5 transition-colors ${formData.role === 'student' ? 'text-white' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                       </svg>
                     </div>
-                    <span className={`text-sm font-medium ${formData.role === 'student' ? 'text-emerald-300' : 'text-gray-300'}`}>Student</span>
-                    <span className="text-xs text-gray-400 mt-1">Looking for work</span>
+                    <span className={`text-xs font-medium ${formData.role === 'student' ? 'text-emerald-300' : 'text-gray-300'}`}>Student</span>
+                    <span className="text-xs text-gray-400 mt-0.5">Seeking jobs</span>
                   </label>
 
                   <label
@@ -185,15 +185,67 @@ const RegisterPage = () => {
                       onChange={handleChange}
                       className="sr-only"
                     />
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
                       formData.role === 'employer' ? 'bg-blue-500 shadow-lg shadow-blue-500/50' : 'bg-white/10'
                     }`}>
-                      <svg className={`w-6 h-6 transition-colors ${formData.role === 'employer' ? 'text-white' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className={`w-5 h-5 transition-colors ${formData.role === 'employer' ? 'text-white' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
                     </div>
-                    <span className={`text-sm font-medium ${formData.role === 'employer' ? 'text-blue-300' : 'text-gray-300'}`}>Employer</span>
-                    <span className="text-xs text-gray-400 mt-1">Looking to hire</span>
+                    <span className={`text-xs font-medium ${formData.role === 'employer' ? 'text-blue-300' : 'text-gray-300'}`}>Employer</span>
+                    <span className="text-xs text-gray-400 mt-0.5">Hiring talent</span>
+                  </label>
+
+                  <label
+                    className={`relative flex flex-col items-center p-4 rounded-xl cursor-pointer transition-all duration-300 ${
+                      formData.role === 'university'
+                        ? 'bg-purple-500/30 border-2 border-purple-400 shadow-lg shadow-purple-500/20'
+                        : 'bg-white/5 border-2 border-white/10 hover:border-white/30'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="role"
+                      value="university"
+                      checked={formData.role === 'university'}
+                      onChange={handleChange}
+                      className="sr-only"
+                    />
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
+                      formData.role === 'university' ? 'bg-purple-500 shadow-lg shadow-purple-500/50' : 'bg-white/10'
+                    }`}>
+                      <svg className={`w-5 h-5 transition-colors ${formData.role === 'university' ? 'text-white' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5m0 0l9 5m-9-5v10l9 5m0 0l9-5m-9 5v-10m0 0l-9-5m9 5l9-5M7 11.5v10m10-10v10" />
+                      </svg>
+                    </div>
+                    <span className={`text-xs font-medium ${formData.role === 'university' ? 'text-purple-300' : 'text-gray-300'}`}>University</span>
+                    <span className="text-xs text-gray-400 mt-0.5">Managing campus</span>
+                  </label>
+
+                  <label
+                    className={`relative flex flex-col items-center p-4 rounded-xl cursor-pointer transition-all duration-300 ${
+                      formData.role === 'admin'
+                        ? 'bg-red-500/30 border-2 border-red-400 shadow-lg shadow-red-500/20'
+                        : 'bg-white/5 border-2 border-white/10 hover:border-white/30'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="role"
+                      value="admin"
+                      checked={formData.role === 'admin'}
+                      onChange={handleChange}
+                      className="sr-only"
+                    />
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
+                      formData.role === 'admin' ? 'bg-red-500 shadow-lg shadow-red-500/50' : 'bg-white/10'
+                    }`}>
+                      <svg className={`w-5 h-5 transition-colors ${formData.role === 'admin' ? 'text-white' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                      </svg>
+                    </div>
+                    <span className={`text-xs font-medium ${formData.role === 'admin' ? 'text-red-300' : 'text-gray-300'}`}>Admin</span>
+                    <span className="text-xs text-gray-400 mt-0.5">System management</span>
                   </label>
                 </div>
               </div>
