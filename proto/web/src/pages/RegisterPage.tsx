@@ -12,7 +12,7 @@ const RegisterPage = () => {
     confirmPassword: '',
     firstName: '',
     lastName: '',
-    role: 'student' as 'student' | 'employer',
+    role: 'student' as 'student' | 'employer' | 'university' | 'admin',
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
