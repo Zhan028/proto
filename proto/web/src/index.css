@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/theme" theme {
+  --color-primary: rgb(59 130 246);
+  --color-secondary: rgb(16 185 129);
+}
+
+@import "tailwindcss";
 
 /* Global styles */
 :root {
