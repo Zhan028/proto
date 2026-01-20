@@ -1,9 +1,11 @@
+export type UserRole = 'student' | 'employer' | 'university' | 'admin';
+
 export interface User {
   id: string;
   email: string;
   firstName: string;
   lastName: string;
-  role: 'student' | 'employer' | 'admin';
+  role: UserRole;
 }
 
 export interface LoginRequest {
@@ -16,7 +18,7 @@ export interface RegisterRequest {
   password: string;
   firstName: string;
   lastName: string;
-  role: 'student' | 'employer';
+  role: UserRole;
 }
 
 export interface AuthResponse {
