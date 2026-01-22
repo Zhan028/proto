@@ -35,4 +35,14 @@ export const authApi = {
       body: JSON.stringify({ refresh_token: refreshToken } as RefreshRequest),
     });
   },
+
+  async updateProfile(token: string, data: RoleProfile): Promise<User> {
+    return apiClient.request<User>('/api/auth/profile', {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+  },
 };
