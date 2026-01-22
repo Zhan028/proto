@@ -1,5 +1,5 @@
 import { apiClient } from './client';
-import type { LoginRequest, RegisterRequest, AuthResponse, User, TokenResponse } from '../types/auth';
+import type { LoginRequest, RegisterRequest, AuthResponse, User, TokenResponse, RoleProfile } from '../types/auth';
 
 // Refresh token request type
 interface RefreshRequest {
