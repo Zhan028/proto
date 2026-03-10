@@ -5,425 +5,287 @@ const HomePage = () => {
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Student Home Page
-  const StudentHome = () => (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, Student!</h1>
-          <p className="text-xl text-gray-600">Discover and manage your career opportunities</p>
-        </div>
+  // Job categories with counts
+  const jobCategories = [
+    { id: 1, name: 'Information Technology', count: '2,340', icon: '💻' },
+    { id: 2, name: 'Sales & Marketing', count: '1,850', icon: '📊' },
+    { id: 3, name: 'Finance & Accounting', count: '1,250', icon: '💰' },
+    { id: 4, name: 'Human Resources', count: '890', icon: '👥' },
+    { id: 5, name: 'Engineering', count: '1,560', icon: '⚙️' },
+    { id: 6, name: 'Healthcare', count: '940', icon: '⚕️' },
+    { id: 7, name: 'Education', count: '720', icon: '🎓' },
+    { id: 8, name: 'Construction', count: '1,100', icon: '🏗️' },
+  ];
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              title: 'Profile Management',
-              description: 'Create and manage your profile with CV/resume',
-              icon: '👤',
-              color: 'bg-cyan-100 text-cyan-700',
-              action: 'Go to My Sessions',
-              link: '/my-sessions',
-            },
-            {
-              title: 'Browse Vacancies',
-              description: 'View and search available job vacancies',
-              icon: '🔍',
-              color: 'bg-blue-100 text-blue-700',
-              action: 'Browse Jobs',
-              link: '#',
-            },
-            {
-              title: 'Apply for Jobs',
-              description: 'Apply for job positions and internships',
-              icon: '📝',
-              color: 'bg-indigo-100 text-indigo-700',
-              action: 'View Applications',
-              link: '#',
-            },
-            {
-              title: 'Application Tracking',
-              description: 'Track the status and history of your applications',
-              icon: '📊',
-              color: 'bg-purple-100 text-purple-700',
-              action: 'Check Status',
-              link: '#',
-            },
-            {
-              title: 'Notifications',
-              description: 'Receive notifications about new opportunities',
-              icon: '🔔',
-              color: 'bg-pink-100 text-pink-700',
-              action: 'View Notifications',
-              link: '#',
-            },
-            {
-              title: 'Resources',
-              description: 'Access career resources and guides',
-              icon: '📚',
-              color: 'bg-orange-100 text-orange-700',
-              action: 'Learn More',
-              link: '#',
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className={`w-12 h-12 rounded-lg ${item.color} flex items-center justify-center text-2xl mb-4`}>
-                {item.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600 mb-4">{item.description}</p>
-              <Link
-                to={item.link}
-                className="inline-block text-cyan-600 hover:text-cyan-700 font-medium"
-              >
-                {item.action} →
-              </Link>
-            </div>
-          ))}
-        </div>
+  // Quick filter chips
+  const filters = [
+    { label: 'Remote Work', count: 342 },
+    { label: 'Part-time', count: 156 },
+    { label: 'Internship', count: 234 },
+    { label: 'New Graduates', count: 189 },
+    { label: 'Freelance', count: 478 },
+  ];
 
-        <div className="mt-12 bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Employment Statistics</h2>
-          <p className="text-gray-600 mb-6">View your employment analytics and insights</p>
-          <button className="px-6 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-            View Analytics
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+  // Featured articles/news
+  const articles = [
+    {
+      id: 1,
+      title: 'Top 5 Skills Employers Look for in 2024',
+      category: 'Career Tips',
+      image: '📰',
+      date: '3 days ago',
+    },
+    {
+      id: 2,
+      title: 'How to Write an Effective Resume',
+      category: 'Resume Tips',
+      image: '📝',
+      date: '5 days ago',
+    },
+    {
+      id: 3,
+      title: 'Interview Tips from Top Recruiters',
+      category: 'Interview Prep',
+      image: '💬',
+      date: '1 week ago',
+    },
+  ];
 
-  // University Home Page
-  const UniversityHome = () => (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, University!</h1>
-          <p className="text-xl text-gray-600">Manage students and employment opportunities</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              title: 'Student Database',
-              description: 'Manage the student database and records',
-              icon: '👥',
-              color: 'bg-emerald-100 text-emerald-700',
-              action: 'Manage Students',
-              link: '#',
-            },
-            {
-              title: 'Employment Trends',
-              description: 'Monitor student employment rates and trends',
-              icon: '📈',
-              color: 'bg-teal-100 text-teal-700',
-              action: 'View Trends',
-              link: '#',
-            },
-            {
-              title: 'Employer Verification',
-              description: 'Approve and verify employer organizations',
-              icon: '✅',
-              color: 'bg-green-100 text-green-700',
-              action: 'Review Employers',
-              link: '#',
-            },
-            {
-              title: 'Post Vacancies',
-              description: 'Post vacancies from university partners',
-              icon: '📢',
-              color: 'bg-lime-100 text-lime-700',
-              action: 'Create Posting',
-              link: '#',
-            },
-            {
-              title: 'Reports & Analytics',
-              description: 'Generate employment reports and analytics',
-              icon: '📊',
-              color: 'bg-cyan-100 text-cyan-700',
-              action: 'Generate Reports',
-              link: '#',
-            },
-            {
-              title: 'Career Events',
-              description: 'Organize career fairs and events',
-              icon: '🎓',
-              color: 'bg-blue-100 text-blue-700',
-              action: 'Manage Events',
-              link: '#',
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className={`w-12 h-12 rounded-lg ${item.color} flex items-center justify-center text-2xl mb-4`}>
-                {item.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600 mb-4">{item.description}</p>
-              <Link
-                to={item.link}
-                className="inline-block text-emerald-600 hover:text-emerald-700 font-medium"
-              >
-                {item.action} →
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Career Counseling</h2>
-          <p className="text-gray-600 mb-6">Provide career counseling support to students</p>
-          <button className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
-            Access Counseling
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Employer Home Page
-  const EmployerHome = () => (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, Employer!</h1>
-          <p className="text-xl text-gray-600">Find and manage talent for your organization</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              title: 'Company Profile',
-              description: 'Register and create your company profile',
-              icon: '🏢',
-              color: 'bg-orange-100 text-orange-700',
-              action: 'Edit Profile',
-              link: '/my-sessions',
-            },
-            {
-              title: 'Post Vacancies',
-              description: 'Post job vacancies and internship positions',
-              icon: '📝',
-              color: 'bg-red-100 text-red-700',
-              action: 'Create Job Post',
-              link: '#',
-            },
-            {
-              title: 'Search Candidates',
-              description: 'Search and view student profiles/resumes',
-              icon: '🔍',
-              color: 'bg-rose-100 text-rose-700',
-              action: 'Browse Resumes',
-              link: '#',
-            },
-            {
-              title: 'Applications',
-              description: 'Review and manage job applications',
-              icon: '📋',
-              color: 'bg-pink-100 text-pink-700',
-              action: 'Review Applications',
-              link: '#',
-            },
-            {
-              title: 'Schedule Interviews',
-              description: 'Schedule interviews with candidates',
-              icon: '📅',
-              color: 'bg-fuchsia-100 text-fuchsia-700',
-              action: 'Manage Interviews',
-              link: '#',
-            },
-            {
-              title: 'Analytics',
-              description: 'Access recruitment analytics and metrics',
-              icon: '📊',
-              color: 'bg-violet-100 text-violet-700',
-              action: 'View Metrics',
-              link: '#',
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className={`w-12 h-12 rounded-lg ${item.color} flex items-center justify-center text-2xl mb-4`}>
-                {item.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600 mb-4">{item.description}</p>
-              <Link
-                to={item.link}
-                className="inline-block text-orange-600 hover:text-orange-700 font-medium"
-              >
-                {item.action} →
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Communication</h2>
-          <p className="text-gray-600 mb-6">Communicate with students and the university</p>
-          <button className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700">
-            Message Center
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Administrator Home Page
-  const AdminHome = () => (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, Administrator!</h1>
-          <p className="text-xl text-gray-600">Manage the entire system</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              title: 'User Management',
-              description: 'Manage all accounts and access rights',
-              icon: '👨‍💼',
-              color: 'bg-slate-100 text-slate-700',
-              action: 'Manage Users',
-              link: '#',
-            },
-            {
-              title: 'System Settings',
-              description: 'Configure system settings and parameters',
-              icon: '⚙️',
-              color: 'bg-gray-100 text-gray-700',
-              action: 'Configure Settings',
-              link: '#',
-            },
-            {
-              title: 'System Monitoring',
-              description: 'Monitor system performance and security',
-              icon: '📡',
-              color: 'bg-zinc-100 text-zinc-700',
-              action: 'View Monitoring',
-              link: '#',
-            },
-            {
-              title: 'Content Moderation',
-              description: 'Moderate content and job postings',
-              icon: '🛡️',
-              color: 'bg-stone-100 text-stone-700',
-              action: 'Review Content',
-              link: '#',
-            },
-            {
-              title: 'Reports',
-              description: 'Generate comprehensive system reports',
-              icon: '📊',
-              color: 'bg-neutral-100 text-neutral-700',
-              action: 'Generate Reports',
-              link: '#',
-            },
-            {
-              title: 'Support',
-              description: 'Resolve disputes and process complaints',
-              icon: '💬',
-              color: 'bg-slate-200 text-slate-700',
-              action: 'View Tickets',
-              link: '#',
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className={`w-12 h-12 rounded-lg ${item.color} flex items-center justify-center text-2xl mb-4`}>
-                {item.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600 mb-4">{item.description}</p>
-              <Link
-                to={item.link}
-                className="inline-block text-slate-600 hover:text-slate-700 font-medium"
-              >
-                {item.action} →
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Database Maintenance</h2>
-            <p className="text-gray-600 mb-6">Manage database backups and maintenance</p>
-            <button className="px-6 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700">
-              Access Maintenance
-            </button>
-          </div>
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">System Updates</h2>
-            <p className="text-gray-600 mb-6">Update system features and capabilities</p>
-            <button className="px-6 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700">
-              Manage Updates
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  // Latest companies
+  const companies = [
+    { id: 1, name: 'Tech Innovators Inc', positions: 45, icon: '🚀' },
+    { id: 2, name: 'Global Finance Solutions', positions: 32, icon: '💼' },
+    { id: 3, name: 'Creative Design Studio', positions: 28, icon: '🎨' },
+  ];
 
   // Landing Page (Not Authenticated)
   const LandingPage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-700">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-4">
-            Student Employment Information System
+    <div className="space-y-8">
+      {/* Hero Section with Search */}
+      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 sm:p-12">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 text-center">
+            Find Your Perfect Job
           </h1>
-          <p className="text-xl text-blue-100 mb-8">
-            Connecting Students, Universities, and Employers
+          <p className="text-xl text-gray-600 text-center mb-8">
+            Browse thousands of job opportunities and start your career journey today
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link
-              to="/register"
-              className="px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              Create Account
-            </Link>
-            <Link
-              to="/login"
-              className="px-8 py-3 bg-purple-800 text-white font-semibold rounded-lg hover:bg-purple-900 transition-colors border border-purple-400"
-            >
-              Sign In
-            </Link>
+
+          {/* Search Bar */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Job title, keywords, or company"
+                className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button className="bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                Search
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Filter Chips */}
+          <div className="flex flex-wrap gap-3 justify-center">
+            {filters.map((filter) => (
+              <button
+                key={filter.label}
+                className="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                {filter.label}
+              </button>
+            ))}
           </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              role: 'Student',
-              subtitle: 'Job Seekers',
-              icon: '👨‍🎓',
-              color: 'from-cyan-500 to-blue-500',
-            },
-            {
-              role: 'University',
-              subtitle: 'Educational Institution',
-              icon: '🏫',
-              color: 'from-emerald-500 to-teal-500',
-            },
-            {
-              role: 'Employer',
-              subtitle: 'Job Providers',
-              icon: '💼',
-              color: 'from-orange-500 to-red-500',
-            },
-            {
-              role: 'Administrator',
-              subtitle: 'System Managers',
-              icon: '⚙️',
-              color: 'from-slate-500 to-gray-500',
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-lg p-6 text-center">
-              <div className="text-5xl mb-4">{item.icon}</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-1">{item.role}</h3>
-              <p className="text-gray-600 text-sm">{item.subtitle}</p>
+      {/* Job Categories Section */}
+      <section>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">Jobs by Profession</h2>
+          <Link to="#" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+            See All →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {jobCategories.map((category) => (
+            <div
+              key={category.id}
+              className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md transition-all cursor-pointer"
+            >
+              <div className="text-4xl mb-3">{category.icon}</div>
+              <h3 className="font-semibold text-gray-900 mb-2">{category.name}</h3>
+              <p className="text-blue-600 font-bold text-lg">{category.count}</p>
+              <p className="text-gray-500 text-sm">open positions</p>
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Featured Companies Section */}
+      <section>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">Companies Hiring Now</h2>
+          <Link to="#" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+            See All →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {companies.map((company) => (
+            <div
+              key={company.id}
+              className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="text-5xl">{company.icon}</div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{company.name}</h3>
+              <p className="text-blue-600 font-bold mb-4">{company.positions} open positions</p>
+              <button className="w-full px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 font-medium transition-colors">
+                View Jobs
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* News & Articles Section */}
+      <section>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">Career Tips & News</h2>
+          <Link to="#" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+            See All →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {articles.map((article) => (
+            <div key={article.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all cursor-pointer">
+              <div className="bg-gradient-to-br from-blue-100 to-indigo-100 h-40 flex items-center justify-center text-6xl">
+                {article.image}
+              </div>
+              <div className="p-5">
+                <p className="text-xs font-semibold text-blue-600 uppercase mb-2">{article.category}</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">{article.title}</h3>
+                <p className="text-sm text-gray-500">{article.date}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 sm:p-12 text-center text-white">
+        <h2 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h2>
+        <p className="text-blue-100 mb-8 text-lg">
+          Join thousands of job seekers finding their perfect role
+        </p>
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={() => navigate('/register')}
+            className="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            Create Free Account
+          </button>
+          <button
+            onClick={() => navigate('/login')}
+            className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+          >
+            Sign In
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+
+  // Student Home Page
+  const StudentHome = () => (
+    <div className="space-y-8">
+      {/* Welcome Section */}
+      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome, {user?.email?.split('@')[0]}!</h1>
+        <p className="text-gray-600">Discover and apply for opportunities that match your skills</p>
+      </section>
+
+      {/* Search Section */}
+      <section className="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Search Jobs</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input
+            type="text"
+            placeholder="Job title or keywords"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button className="bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+            Search
+          </button>
+        </div>
+      </section>
+
+      {/* Quick Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <p className="text-gray-600 text-sm mb-2">Profile Completion</p>
+          <p className="text-3xl font-bold text-gray-900">85%</p>
+          <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
+            <div className="bg-blue-600 h-2 rounded-full" style={{ width: '85%' }}></div>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <p className="text-gray-600 text-sm mb-2">Applications Sent</p>
+          <p className="text-3xl font-bold text-gray-900">12</p>
+          <p className="text-sm text-gray-500 mt-2">This month</p>
+        </div>
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <p className="text-gray-600 text-sm mb-2">Profile Views</p>
+          <p className="text-3xl font-bold text-gray-900">234</p>
+          <p className="text-sm text-gray-500 mt-2">By employers</p>
+        </div>
       </div>
+
+      {/* Quick Actions */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { title: 'Update Profile', description: 'Complete your CV and profile information', icon: '👤', link: '/my-sessions' },
+          { title: 'Browse Jobs', description: 'Explore available job opportunities', icon: '🔍', link: '#' },
+          { title: 'My Applications', description: 'Track your job applications', icon: '📋', link: '#' },
+        ].map((item, idx) => (
+          <Link
+            key={idx}
+            to={item.link}
+            className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all"
+          >
+            <div className="text-4xl mb-3">{item.icon}</div>
+            <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+            <p className="text-gray-600 text-sm mb-4">{item.description}</p>
+            <span className="text-blue-600 font-medium text-sm">View →</span>
+          </Link>
+        ))}
+      </div>
+
+      {/* Recommended Jobs */}
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Jobs Recommended for You</h2>
+        <div className="space-y-4">
+          {[1, 2, 3].map((idx) => (
+            <div key={idx} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all">
+              <div className="flex justify-between items-start">
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Senior Software Developer</h3>
+                  <p className="text-gray-600 mb-3">Tech Innovators Inc • Astana</p>
+                  <p className="text-gray-700 mb-4">We're looking for experienced developers to join our growing team...</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full">$4,000-5,000</span>
+                    <span className="px-3 py-1 bg-green-50 text-green-700 text-sm rounded-full">Full-time</span>
+                  </div>
+                </div>
+                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                  Apply
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 
@@ -432,18 +294,12 @@ const HomePage = () => {
     return <LandingPage />;
   }
 
-  switch (user?.role) {
-    case 'student':
-      return <StudentHome />;
-    case 'university':
-      return <UniversityHome />;
-    case 'employer':
-      return <EmployerHome />;
-    case 'admin':
-      return <AdminHome />;
-    default:
-      return <LandingPage />;
+  if (user?.role === 'student') {
+    return <StudentHome />;
   }
+
+  // Default landing for other roles
+  return <LandingPage />;
 };
 
 export default HomePage;
