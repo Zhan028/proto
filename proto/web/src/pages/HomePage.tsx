@@ -86,7 +86,7 @@ const HomePage = () => {
           </div>
 
           {/* Quick Filter Chips */}
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-3 justify-center mb-6">
             {filters.map((filter) => (
               <button
                 key={filter.label}
@@ -95,6 +95,16 @@ const HomePage = () => {
                 {filter.label}
               </button>
             ))}
+          </div>
+
+          {/* Browse Jobs Button */}
+          <div className="text-center">
+            <Link
+              to="/jobs"
+              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Browse All Jobs
+            </Link>
           </div>
         </div>
       </section>
@@ -245,9 +255,9 @@ const HomePage = () => {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
-          { title: 'Update Profile', description: 'Complete your CV and profile information', icon: '👤', link: '/my-sessions' },
-          { title: 'Browse Jobs', description: 'Explore available job opportunities', icon: '🔍', link: '#' },
-          { title: 'My Applications', description: 'Track your job applications', icon: '📋', link: '#' },
+          { title: 'Update Profile', description: 'Complete your CV and profile information', icon: '👤', link: '/profile' },
+          { title: 'Browse Jobs', description: 'Explore available job opportunities', icon: '🔍', link: '/jobs' },
+          { title: 'My Applications', description: 'Track your job applications', icon: '📋', link: '/my-applications' },
         ].map((item, idx) => (
           <Link
             key={idx}
