@@ -304,12 +304,86 @@ const HomePage = () => {
     return <LandingPage />;
   }
 
-  if (user?.role === 'student') {
-    return <StudentHome />;
-  }
+  switch (user?.role) {
+    case 'student':
+      return <StudentHome />;
+    case 'employer':
+      return (
+        <div className="space-y-8">
+          <section>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, Employer!</h1>
+            <p className="text-xl text-gray-600">Find and manage talent for your organization</p>
+          </section>
 
-  // Default landing for other roles
-  return <LandingPage />;
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { label: 'Active Jobs', value: '5', icon: '📋' },
+              { label: 'Total Applications', value: '124', icon: '📨' },
+              { label: 'Interviews Scheduled', value: '12', icon: '📅' },
+              { label: 'Hires This Month', value: '3', icon: '✅' },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-white rounded-xl border border-gray-200 p-6">
+                <div className="text-3xl mb-3">{stat.icon}</div>
+                <p className="text-gray-600 text-sm mb-1">{stat.label}</p>
+                <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white rounded-xl border border-gray-200 p-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Manage Your Recruitment</h2>
+            <p className="text-gray-600 mb-6">Post jobs, review candidates, and manage applications</p>
+            <Link
+              to="/employer-dashboard"
+              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Go to Employer Dashboard
+            </Link>
+          </div>
+        </div>
+      );
+    case 'university':
+    case 'admin':
+      return (
+        <div className="space-y-8">
+          <section>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, University Administrator!</h1>
+            <p className="text-xl text-gray-600">Monitor employment statistics and graduate outcomes</p>
+          </section>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { label: 'Total Students', value: '2,450', icon: '👥', trend: '+12%' },
+              { label: 'Employed Graduates', value: '1,862', icon: '✅', trend: '+8%' },
+              { label: 'Active Employers', value: '156', icon: '🏢', trend: '+15%' },
+              { label: 'Job Openings', value: '487', icon: '📋', trend: '+22%' },
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-white rounded-xl border border-gray-200 p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-3xl">{stat.icon}</span>
+                  <span className="text-green-600 font-semibold text-sm">{stat.trend}</span>
+                </div>
+                <p className="text-gray-600 text-sm mb-1">{stat.label}</p>
+                <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white rounded-xl border border-gray-200 p-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">View Employment Analytics</h2>
+            <p className="text-gray-600 mb-6">Access comprehensive employment statistics and skill gap analysis</p>
+            <Link
+              to="/analytics"
+              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Go to Analytics Dashboard
+            </Link>
+          </div>
+        </div>
+      );
+    default:
+      return <LandingPage />;
+  }
 };
 
 export default HomePage;

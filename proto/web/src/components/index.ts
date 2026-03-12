@@ -7,3 +7,4 @@ export { UniversityProfileForm } from './UniversityProfileForm';
 export { default as MatchIndex } from './MatchIndex';
 export { default as JobCard } from './JobCard';
 export { default as CandidateCard } from './CandidateCard';
+export { default as RoleBasedRoute } from './RoleBasedRoute';

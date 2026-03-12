@@ -14,6 +14,7 @@ import {
 } from '../pages';
 import { AuthProvider } from '../context';
 import { ProtectedRoute } from '../components';
+import RoleBasedRoute from '../components/RoleBasedRoute';
 
 const router = createBrowserRouter([
   {
@@ -33,33 +34,70 @@ const router = createBrowserRouter([
         path: '/my-sessions',
         element: <ProtectedRoute><MySessionsPage /></ProtectedRoute>,
       },
+      // Public routes (all authenticated users)
       {
         path: '/jobs',
-        element: <BrowseJobsPage />,
+        element: <ProtectedRoute><BrowseJobsPage /></ProtectedRoute>,
       },
       {
         path: '/job/:id',
-        element: <JobDetailsPage />,
+        element: <ProtectedRoute><JobDetailsPage /></ProtectedRoute>,
       },
+
+      // Student-only routes
       {
         path: '/profile',
-        element: <ProtectedRoute><StudentProfilePage /></ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            <RoleBasedRoute allowedRoles={['student']}>
+              <StudentProfilePage />
+            </RoleBasedRoute>
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/my-applications',
-        element: <ProtectedRoute><StudentProfilePage /></ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            <RoleBasedRoute allowedRoles={['student']}>
+              <StudentProfilePage />
+            </RoleBasedRoute>
+          </ProtectedRoute>
+        ),
       },
+
+      // Employer-only routes
       {
         path: '/employer-dashboard',
-        element: <ProtectedRoute><EmployerDashboardPage /></ProtectedRoute>,
-      },
-      {
-        path: '/analytics',
-        element: <ProtectedRoute><UniversityAnalyticsPage /></ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            <RoleBasedRoute allowedRoles={['employer']}>
+              <EmployerDashboardPage />
+            </RoleBasedRoute>
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/candidate/:id',
-        element: <ProtectedRoute><CandidateDetailPage /></ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            <RoleBasedRoute allowedRoles={['employer']}>
+              <CandidateDetailPage />
+            </RoleBasedRoute>
+          </ProtectedRoute>
+        ),
+      },
+
+      // University admin-only routes
+      {
+        path: '/analytics',
+        element: (
+          <ProtectedRoute>
+            <RoleBasedRoute allowedRoles={['university', 'admin']}>
+              <UniversityAnalyticsPage />
+            </RoleBasedRoute>
+          </ProtectedRoute>
+        ),
       },
     ],
   },
